@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Publicacao;
 use App\Models\Avaliacao;
+<<<<<<< HEAD
 use App\Models\Comentario;
 use App\Models\Like;
 use App\Models\Dislike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+=======
+use Illuminate\Http\Request;
+>>>>>>> b30999b3e9210094af1c03a54f6c305538de201d
 
 class PublicacaoController extends Controller
 {
     public function index()
     {
+<<<<<<< HEAD
         $publicacoes = Publicacao::with(['comentario.user'])->get();
         $total_likes = Like::count();
         $total_dislikes = Dislike::count();
@@ -116,5 +121,19 @@ class PublicacaoController extends Controller
             'comentario' => $request->comentario,
         ]);
         return redirect()->back();
+=======
+        // eager load da avaliacao para evitar N+1 e garantir disponibilidade em view
+        $publicacoes = Publicacao::with('avaliacao')->get();
+        return view('publicacao.index', compact('publicacoes'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function listarPublicacoes()
+    {
+        $avaliacao = Avaliacao::find(1);
+        return view('publicacao.index', compact('avaliacao'));
+>>>>>>> b30999b3e9210094af1c03a54f6c305538de201d
     }
 }

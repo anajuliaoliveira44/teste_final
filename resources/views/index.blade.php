@@ -9,11 +9,16 @@
 </div>
 @foreach($publicacoes as $publicacao)
 <div class="border">
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> b30999b3e9210094af1c03a54f6c305538de201d
     <h2 class="text-lg font-bold">{{$publicacao->titulo_prato}}</h2>
     <div class="border border-black rounded p-4 mx-1">
         <p class="max-w-full h-auto mx-auto">
             <img src="{{asset($publicacao->foto)}}" class="w-full h-auto rounded">
+<<<<<<< HEAD
         </p>
     </div>
     <div class="mt-2 grid grid-cols-2 grid-rows-2 px-1">
@@ -75,3 +80,14 @@
     </div>
     @endforeach
     @endsection
+=======
+
+        </p>
+    </div>
+    <div class="mt-2 grid grid-cols-2 grid-rows-2 px-1">
+       
+    </div>
+</div>
+@endforeach
+@endsection
+>>>>>>> b30999b3e9210094af1c03a54f6c305538de201d
