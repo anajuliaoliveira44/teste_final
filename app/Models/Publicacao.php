@@ -3,22 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Avaliacao;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Publicacao extends Model
 {
+    
     protected $table = 'publicacao';
+    protected $primaryKey = 'id_publicacao';
     protected $fillable = ['foto', 'titulo_prato', 'localr', 'cidade', 'empresa_id'];
     public $timestamps = false;
-    
- 
-    public function avaliacao()
+ public function likes(): HasMany
     {
-        // Retorna uma avaliação padrão (likes=0) se não existir, evitando nulidade na view
-        return $this->hasOne(Avaliacao::class, 'publicacao_id')->withDefault([
-            'likes' => 0,
-            'deslikes' => 0,
-        ]);
+        return $this->hasMany(Like::class, 'publicacao_id', 'id_publicacao');
     }
-    
+
+    public function dislikes(): HasMany
+    {
+        return $this->hasMany(Dislike::class,  'publicacao_id', 'id_publicacao');
+    }
+
+    public function comentario(): HasMany
+    {
+        return $this->hasMany(Comentario::class,  'publicacao_id', 'id_publicacao');
+    }
 }
